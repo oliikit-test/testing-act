@@ -1,12 +1,13 @@
 name: Run on Push
 
 on:
-  pull_request:
-    types: [opened]
+  issue_comment:
+    types: [created]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    if: github.event.issue.pull_request
     permissions:
       contents: read
       packages: write  # Required for pushing to GHCR
@@ -19,8 +20,7 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
      
-      - name: Check PR title
+      - name: Comment on the PR Status
         run: |
-          title="${{ github.event.pull_request.title }}"
-
-          echo "PR title starts with 'octocat'"
+          comment="${{ github.event.comment.body }}"
+          echo "Comment: $comment"
