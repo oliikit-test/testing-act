@@ -1,0 +1,26 @@
+name: Run on Push
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request
+    permissions:
+      contents: read
+      packages: write  # Required for pushing to GHCR
+    
+    steps:
+      - name: Build Docker
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+     
+      - name: Comment on the PR Status
+        run: |
+          comment="${{ github.event.comment.body }}"
+          echo "Comment: $comment"
