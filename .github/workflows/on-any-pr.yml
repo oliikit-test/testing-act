@@ -25,4 +25,4 @@ jobs:
           info=${{ github.event.head_commit.message }}
           echo "Commit metadata: $info"
 
-      
+    
