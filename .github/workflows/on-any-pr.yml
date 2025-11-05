@@ -6,7 +6,6 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request
     permissions:
       contents: read
       packages: write  # Required for pushing to GHCR
